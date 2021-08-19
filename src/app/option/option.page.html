@@ -1,0 +1,70 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>{{ text.item_addon_title }} <ion-button size="small" fill="outline" style="float:right"
+                (click)="closeModal()">
+                <ion-icon name="close" style="color:red;font-size: 25px"></ion-icon>
+            </ion-button>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios">
+
+    <ion-list>
+        <ion-list-header>
+            {{ text.item_size_heading }}
+        </ion-list-header>
+        <ion-radio-group>
+            <ion-item *ngIf="item.k_price || item.d_k_price">
+                <ion-label>{{ text.item_kids }} <span *ngIf="item.d_k_price" style="float: right">{{ currency }}{{ item.d_k_price }}</span>
+                    <span *ngIf="item.k_price" [class.strikethrough]="item.d_k_price" style="float: right">{{ currency }}{{ item.k_price }}&nbsp;</span>
+                </ion-label>
+                <ion-radio slot="start" color="secondary" value="kids" (ionSelect)="selectItem(1,item.d_k_price ? item.d_k_price : item.k_price)">
+                </ion-radio>
+            </ion-item>
+
+            <ion-item *ngIf="item.s_price || item.d_s_price">
+                <ion-label>{{ text.item_small }} 
+                    <span *ngIf="item.d_s_price" style="float: right">{{ currency }}{{ item.d_s_price }}</span>
+                    <span *ngIf="item.s_price" [class.strikethrough]="item.d_s_price" style="float: right">{{ currency }}{{ item.s_price }}&nbsp;</span>
+                </ion-label>
+                <ion-radio slot="start" color="secondary" value="small" (ionSelect)="selectItem(2,item.d_s_price ? item.d_s_price : item.s_price)">
+                </ion-radio>
+            </ion-item>
+
+            <ion-item *ngIf="item.m_price || item.d_m_price">
+                <ion-label>{{ text.item_m }} 
+                    <span *ngIf="item.d_m_price" style="float: right">{{ currency }}{{ item.d_m_price }}</span>
+                    <span *ngIf="item.m_price" [class.strikethrough]="item.d_m_price" style="float: right">{{ currency }}{{ item.m_price }}&nbsp;</span>
+                </ion-label>
+                <ion-radio slot="start" color="secondary" value="m" (ionSelect)="selectItem(3,item.d_m_price ? item.d_m_price : item.m_price)">
+                </ion-radio>
+            </ion-item>
+
+            <ion-item *ngIf="item.l_price || item.d_l_price">
+                <ion-label>{{ text.item_large }} 
+                    <span *ngIf="item.d_l_price" style="float: right">{{ currency }}{{ item.d_l_price }}</span>
+                    <span *ngIf="item.l_price" [class.strikethrough]="item.d_l_price" style="float: right">{{ currency }}{{ item.l_price }}&nbsp;</span>
+                </ion-label>
+                <ion-radio slot="start" color="secondary" value="l" (ionSelect)="selectItem(4,item.d_l_price ? item.d_l_price : item.l_price)">
+                </ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+
+    <ion-list *ngIf="item.addon.length > 0">
+        <ion-list-header>
+            {{ text.item_addon_heading }}
+        </ion-list-header>
+
+        <ion-item *ngFor="let addon of item.addon">
+            <ion-label>{{ addon.name }} <span style="float: right">{{ currency }}{{ addon.price }}</span></ion-label>
+            <ion-checkbox color="secondary" slot="start" (ionChange)="addonSelect(addon.id)"></ion-checkbox>
+        </ion-item>
+
+    </ion-list>
+
+    <ion-button expand="block" size="large" mode="ios" style="width: 80%;margin-left:10%" [disabled]="!itemID"
+        (click)="addToCart()">{{ text.item_addon_button }}</ion-button>
+
+</ion-content>
