@@ -1,23 +1,43 @@
-# ignore everything in the root except the "wp-content" directory.
-!wp-content/
+# compiled output
+/dist
+/tmp
+/out-tsc
+/vendor
+/app/logs
+# dependencies
+/node_modules
 
-# ignore everything in the "wp-content" directory, except:
-# "mu-plugins", "plugins", "themes" directory
-wp-content/*
-!wp-content/mu-plugins/
-!wp-content/plugins/
-!wp-content/themes/
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# ignore these plugins
-wp-content/plugins/hello.php
+# IDE - VSCode
+/.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# ignore specific themes
-wp-content/themes/twenty*/
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
 
-# ignore node dependency directories
-node_modules/
+# e2e
+/e2e/*.js
+/e2e/*.map
 
-# ignore log files and databases
-*.log
-*.sql
-*.sqlite
+#System Files
+.DS_Store
+Thumbs.db
+!.gitkeep
